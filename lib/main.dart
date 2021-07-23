@@ -2,11 +2,7 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(
-    XylophoneApp(),
-  );
-}
+void main() => runApp(XylophoneApp());
 
 class XylophoneApp extends StatelessWidget {
   // const XylophoneApp({Key? key}) : super(key: key);
@@ -14,6 +10,20 @@ class XylophoneApp extends StatelessWidget {
   void playSound(int soundNum) {
     final player = AudioCache();
     player.play('assets_note$soundNum.wav');
+  }
+
+  Expanded buildKey(Color color, int keyNum) {
+    return Expanded(
+      child: TextButton(
+        style: ButtonStyle(
+          backgroundColor: MaterialStateColor.resolveWith((states) => color),
+        ),
+        onPressed: () {
+          playSound(keyNum);
+        },
+        child: Text(''),
+      ),
+    );
   }
 
   @override
@@ -26,90 +36,13 @@ class XylophoneApp extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Expanded(
-                child: TextButton(
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateColor.resolveWith(
-                        (states) => Colors.pink.shade300),
-                  ),
-                  onPressed: () {
-                    playSound(1);
-                  },
-                  child: Text(''),
-                ),
-              ),
-              Expanded(
-                child: TextButton(
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateColor.resolveWith(
-                        (states) => Colors.red.shade900),
-                  ),
-                  onPressed: () {
-                    playSound(2);
-                  },
-                  child: Text(''),
-                ),
-              ),
-              Expanded(
-                child: TextButton(
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateColor.resolveWith(
-                        (states) => Colors.blue.shade900),
-                  ),
-                  onPressed: () {
-                    playSound(3);
-                  },
-                  child: Text(''),
-                ),
-              ),
-              Expanded(
-                child: TextButton(
-                  style: ButtonStyle(
-                    backgroundColor:
-                    MaterialStateColor.resolveWith((states) => Colors.yellow),
-                  ),
-                  onPressed: () {
-                    playSound(4);
-                  },
-                  child: Text(''),
-                ),
-              ),
-              Expanded(
-                child: TextButton(
-                  style: ButtonStyle(
-                    backgroundColor:
-                        MaterialStateColor.resolveWith((states) => Colors.grey),
-                  ),
-                  onPressed: () {
-                    playSound(5);
-                  },
-                  child: Text(''),
-                ),
-              ),
-              Expanded(
-                child: TextButton(
-                  style: ButtonStyle(
-                    backgroundColor:
-                        MaterialStateColor.resolveWith((states) => Colors.green),
-                  ),
-                  onPressed: () {
-                    playSound(6);
-                  },
-                  child: Text(''),
-                ),
-              ),
-              Expanded(
-                child: TextButton(
-                  style: ButtonStyle(
-                    backgroundColor:
-                        MaterialStateColor.resolveWith((states) => Colors.purple),
-                  ),
-                  onPressed: () {
-                    playSound(7);
-                  },
-                  child: Text(''),
-                ),
-              ),
+              buildKey(Colors.red.shade900, 1),
+              buildKey(Colors.teal, 2),
+              buildKey(Colors.pink.shade900, 3),
+              buildKey(Colors.yellow, 4),
+              buildKey(Colors.orange.shade900, 5),
+              buildKey(Colors.green, 6),
+              buildKey(Colors.purple.shade900, 7),
             ],
           ),
         ),
